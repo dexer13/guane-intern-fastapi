@@ -1,0 +1,4 @@
+- sudo docker-compose exec server aerich init -t app.config.database.pg.TORTOISE_ORM
+- sudo docker-compose exec server aerich init-db
+- sudo docker-compose exec server aerich migrate
+- sudo docker-compose exec server aerich upgrade
