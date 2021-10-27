@@ -10,7 +10,7 @@ from .general_config import IS_TEST, DB_PORT, DB_NAME, DB_USER, \
 
 class DataBaseInit:
     DB_URL = ''
-    MODULES = {'models': ["app.models.animals"]}
+    MODULES = {'models': ["app.models"]}
     GENERATE_SCHEMAS = True
     APP = None
 
@@ -23,7 +23,7 @@ class DataBaseInit:
             db_url=self.DB_URL,
             modules=self.MODULES,
             add_exception_handlers=True,
-            generate_schemas=False
+            generate_schemas=True
         )
 
     @staticmethod
@@ -39,3 +39,7 @@ class DBTestInit(DataBaseInit):
 
 class DBPostgresInit(DataBaseInit):
     DB_URL = f'postgres://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+
+
+Tortoise.init_models(['app.models'], 'models')
+

@@ -205,6 +205,9 @@ category = "main"
 optional = false
 python-versions = "*"
 
+[package.dependencies]
+bcrypt = {version = ">=3.1.0", optional = true, markers = "extra == \"bcrypt\""}
+
 [package.extras]
 argon2 = ["argon2-cffi (>=18.2.0)"]
 bcrypt = ["bcrypt (>=3.1.0)"]
@@ -387,7 +390,7 @@ standard = ["websockets (>=9.1)", "httptools (>=0.2.0,<0.3.0)", "watchgod (>=0.6
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "767fe448a86e3cb490a60a36dff4517f882bd68ce2aacf9139c103ecf5f744b6"
+content-hash = "3e45d0f8db513b7cb828794bca24bd42379366251eb7c5b86bce899c4d9c1ed1"
 
 [metadata.files]
 aerich = [
