@@ -12,9 +12,41 @@ services:
       - ./app/.env
     ports:
       - 8000:8000
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
       - db
-
+      - redis
+  worker:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    command: celery -A app.worker.worker.celery worker --loglevel=info
+    volumes:
+      - ./app:/usr/src/app
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - server
+      - redis
+  redis:
+    image: redis:6-alpine
+  dashboard:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    command: celery -A app.worker.worker.celery --broker=redis://redis:6379/0 flower --port=5555
+    ports:
+      - 5556:5555
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - server
+      - redis
+      - worker
   db:
     image: postgres:13-alpine
     volumes:

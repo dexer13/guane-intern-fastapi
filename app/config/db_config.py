@@ -41,5 +41,6 @@ class DBPostgresInit(DataBaseInit):
     DB_URL = f'postgres://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 
+
 Tortoise.init_models(['app.models'], 'models')
 

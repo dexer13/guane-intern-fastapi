@@ -1,0 +1,1 @@
+from .worker import sleep_task, add_dog

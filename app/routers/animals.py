@@ -8,6 +8,7 @@ from app.models import User
 from app.models.animals import Dog
 from app.dependencies import get_current_user
 from app.schemas import DogInSchema, DogOutSchema, DogSchema
+from app.worker import add_dog
 
 router = APIRouter(
     prefix='/dogs',
@@ -20,11 +21,8 @@ async def create_dogs(
         dog: DogInSchema,
         current_user: User = Depends(get_current_user)
 ):
-    dog_obj = await Dog.create(**dog.dict(exclude_unset=True))
-    if dog_obj.is_adopted:
-        dog_obj.owner = current_user
-        await dog_obj.save()
-    return await DogOutSchema.from_tortoise_orm(dog_obj)
+    add_dog.delay(dog.dict(exclude_unset=True), current_user.id)
+    return {'message': 'The dog will be created'}
 
 
 @router.get("/", response_model=List[DogSchema])
