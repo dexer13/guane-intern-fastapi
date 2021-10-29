@@ -1,13 +1,11 @@
 import os
 import time
 import asyncio
-from asgiref.sync import async_to_sync
 import requests
 
 from celery import Celery
 from tortoise import Tortoise
 
-from app.config import DataBaseInit
 from app.config.general_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
     DB_NAME
 from app.models import Dog

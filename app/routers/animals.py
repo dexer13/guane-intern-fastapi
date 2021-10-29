@@ -33,7 +33,7 @@ async def get_dogs():
 
 @router.get("/is_adopted", response_model=List[DogSchema])
 async def get_dog():
-    return await DogSchema.from_queryset_single(Dog.get(is_adopted=True))
+    return await DogSchema.from_queryset(Dog.filter(is_adopted=True))
 
 
 @router.get("/{dog_name}")

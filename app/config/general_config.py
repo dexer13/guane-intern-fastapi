@@ -1,4 +1,4 @@
-# test
+# tests
 IS_TEST = False
 
 # DB DOCKER
