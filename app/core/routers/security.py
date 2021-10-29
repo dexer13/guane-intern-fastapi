@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.responses import JSONResponse
 
-from app.models import User
-from app.utils import Hash, create_access_token
+from app.core.models import User
+from app.core.utils import Hash, create_access_token
 
 from celery.result import AsyncResult
 from app.worker import sleep_task

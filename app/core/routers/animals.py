@@ -4,10 +4,10 @@ from fastapi import APIRouter
 from fastapi.params import Depends
 from tortoise.contrib.fastapi import HTTPNotFoundError
 
-from app.models import User
-from app.models.animals import Dog
-from app.dependencies import get_current_user
-from app.schemas import DogInSchema, DogOutSchema, DogSchema
+from app.core.models import User
+from app.core.models.animals import Dog
+from app.core.dependencies import get_current_user
+from app.core.schemas import DogInSchema, DogOutSchema, DogSchema
 from app.worker import add_dog
 
 router = APIRouter(

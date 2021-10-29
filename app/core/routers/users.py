@@ -3,10 +3,10 @@ from typing import List
 from fastapi import APIRouter, Depends
 from tortoise.contrib.fastapi import HTTPNotFoundError
 
-from app.dependencies import get_current_user
-from app.models.auth import User
-from app.schemas import UserOutSchema, UserInSchema, UserUpdateInSchema
-from app.utils import Hash
+from app.core.dependencies import get_current_user
+from app.core.models.auth import User
+from app.core.schemas import UserOutSchema, UserInSchema, UserUpdateInSchema
+from app.core.utils import Hash
 
 router = APIRouter(
     prefix='/users',

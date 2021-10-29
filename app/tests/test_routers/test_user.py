@@ -3,8 +3,8 @@ from httpx import AsyncClient
 
 from app.conftest import get_authorization_header
 from app.main import app
-from app.models import User
-from app.utils import Hash
+from app.core.models import User
+from app.core.utils import Hash
 
 
 @pytest.mark.asyncio

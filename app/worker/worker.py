@@ -6,9 +6,9 @@ import requests
 from celery import Celery
 from tortoise import Tortoise
 
-from app.config.general_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
+from app.config.parameters import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
     DB_NAME
-from app.models import Dog
+from app.core.models import Dog
 
 celery = Celery(__name__)
 celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379")
@@ -18,7 +18,7 @@ celery.conf.result_backend = os.environ.get("CELERY_RESULT_BACKEND", "redis://lo
 async def init_database():
     await Tortoise.init(
         db_url=f'postgres://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}',
-        modules={'models': ["app.models"]}
+        modules={'models': ["app.core.models"]}
     )
 
 

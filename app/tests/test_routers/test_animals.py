@@ -3,7 +3,7 @@ from httpx import AsyncClient
 
 from app.conftest import get_authorization_header
 from app.main import app
-from app.models import Dog
+from app.core.models import Dog
 
 
 @pytest.mark.asyncio

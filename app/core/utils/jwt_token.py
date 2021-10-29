@@ -3,9 +3,10 @@ from datetime import timedelta, datetime
 from fastapi import HTTPException
 from jose import jwt, JWTError
 
-from app.schemas import TokenDataSchema
+from app.core.schemas import TokenDataSchema
+from app.config.parameters import SECRET_KEY as P_SECRET_KEY
 
-SECRET_KEY = '3e7fd6140e32b756a495477dc529d85f3d9dab279f1de04ae8884f1e7bd38d9c'
+SECRET_KEY = P_SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 

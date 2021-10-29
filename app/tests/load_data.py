@@ -1,5 +1,5 @@
-from app.models import User, Dog
-from app.utils import Hash
+from app.core.models import User, Dog
+from app.core.utils import Hash
 
 
 async def load_data_test():

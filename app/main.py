@@ -1,16 +1,14 @@
 # pylint: disable=E0611,E0401
-import asyncio
-from datetime import datetime
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from tortoise.contrib.fastapi import register_tortoise
 
-from app.config.general_config import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
+from app.config.parameters import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
     DB_NAME
-from app.initializer import init
-from app.models.animals import Dog
-from app.routers import animals, users, security
+
+from app.core.routers import animals, users
+from app.core.routers import security
 
 ALLOW_ORIGINS = [
     "http://localhost",
@@ -39,7 +37,7 @@ async def root():
 register_tortoise(
     app,
     db_url=f'postgres://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}',
-    modules={'models': ["app.models"]},
+    modules={'models': ["app.core.models"]},
     add_exception_handlers=True,
     generate_schemas=True
 )

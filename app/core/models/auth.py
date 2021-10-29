@@ -1,5 +1,4 @@
-from tortoise import Model, fields, Tortoise
-from tortoise.contrib.pydantic import pydantic_model_creator
+from tortoise import Model, fields
 
 
 class User(Model):

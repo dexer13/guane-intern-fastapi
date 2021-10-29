@@ -1,6 +1,5 @@
-from tortoise import Tortoise
 from tortoise.contrib.pydantic import pydantic_model_creator
-from app.models import Dog
+from app.core.models import Dog
 
 
 DogSchema = pydantic_model_creator(Dog, name='Dog',

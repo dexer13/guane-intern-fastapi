@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Text, Optional
+from typing import Optional
 
 
 class TokenSchema(BaseModel):
