@@ -5,7 +5,7 @@ Servicios rest que permite gestionar perritos y adoptarlos
 1. [Features](#features)
 2. [Stack](#stack)
 3. [Architecture](#architecture)
-4. [File Structure](#File Structure)
+4. [File Structure](#file-structure)
 5. [IDE](#ide)
 6. [requirements](#requirements)
 7. [Deployment](#deployment)
