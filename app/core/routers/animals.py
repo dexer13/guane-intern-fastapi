@@ -11,7 +11,7 @@ from app.core.schemas import DogInSchema, DogOutSchema, DogSchema
 from app.worker import add_dog
 
 router = APIRouter(
-    prefix='/dogs',
+    prefix='/api/dogs',
     tags=['dogs'],
 )
 

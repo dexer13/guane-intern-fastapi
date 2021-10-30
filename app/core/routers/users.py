@@ -9,7 +9,7 @@ from app.core.schemas import UserOutSchema, UserInSchema, UserUpdateInSchema
 from app.core.utils import Hash
 
 router = APIRouter(
-    prefix='/users',
+    prefix='/api/users',
     tags=['users'],
     dependencies=[Depends(get_current_user)]
 )

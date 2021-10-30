@@ -6,12 +6,13 @@ from app.main import app
 from app.core.models import User
 from app.core.utils import Hash
 
+module_url = '/api/users'
 
 @pytest.mark.asyncio
 async def test_get_users():
     async with AsyncClient(app=app, base_url='http://test') as client:
         headers = await get_authorization_header(client)
-        response = await client.get('/users/', headers=headers)
+        response = await client.get(f'{module_url}/', headers=headers)
         assert response.status_code == 200
         assert len(response.json()) == 3
 
@@ -25,7 +26,7 @@ async def test_add_user():
     async with AsyncClient(app=app, base_url='http://test') as client:
         headers = await get_authorization_header(client)
         response = await client.post(
-            '/users/', headers=headers, json=data_user
+            f'{module_url}/', headers=headers, json=data_user
         )
         assert response.status_code == 200
         assert response.json().get('username') == 'user_to_add'
@@ -36,7 +37,7 @@ async def test_get_current_user():
     async with AsyncClient(app=app, base_url='http://test') as client:
         headers = await get_authorization_header(client)
         response = await client.get(
-            '/users/me', headers=headers
+            f'{module_url}/me', headers=headers
         )
         assert response.status_code == 200
         assert response.json().get('username') == 'user_test'
@@ -46,7 +47,7 @@ async def test_get_current_user():
 async def test_get_user():
     async with AsyncClient(app=app, base_url='http://test') as client:
         headers = await get_authorization_header(client)
-        response = await client.get('/users/1', headers=headers)
+        response = await client.get(f'{module_url}/1', headers=headers)
         assert response.status_code == 200
         assert response.json().get('username') == 'user_test'
 
@@ -60,7 +61,7 @@ async def test_update_user():
     async with AsyncClient(app=app, base_url='http://test') as client:
         headers = await get_authorization_header(client)
         response = await client.put(
-            '/users/2', json=data_updated, headers=headers
+            f'{module_url}/2', json=data_updated, headers=headers
         )
         assert response.status_code == 200
         user_updated = await User.get(id=2)
@@ -77,7 +78,7 @@ async def test_delete_user():
         assert await User.exists(id=100)
         headers = await get_authorization_header(client)
         response = await client.delete(
-            '/users/100', headers=headers
+            f'{module_url}/100', headers=headers
         )
         assert response.status_code == 200
         assert not await User.exists(id=100)
