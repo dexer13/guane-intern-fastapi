@@ -7,7 +7,7 @@ from tortoise.contrib.fastapi import register_tortoise
 from app.config.parameters import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
     DB_NAME
 
-from app.core.routers import animals, users
+from app.core.routers import animals, users, files
 from app.core.routers import security
 
 ALLOW_ORIGINS = [
@@ -28,6 +28,8 @@ app.add_middleware(
 app.include_router(security.router)
 app.include_router(animals.router)
 app.include_router(users.router)
+app.include_router(files.router)
+
 
 @app.get("/")
 async def root():
