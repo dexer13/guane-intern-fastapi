@@ -34,7 +34,7 @@ Rest services to manage dogs and adoptions.
   
 ***
 ## Architecture
-put here architecture image
+![Architecture](docs/architecture.png)
 ***
 ## File Structure
 ```shell script
