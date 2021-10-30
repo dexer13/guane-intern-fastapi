@@ -1,5 +1,5 @@
 # guane-intern-fastapi:
-Servicios rest que permite gestionar perritos y adoptarlos
+Rest services to manage dogs and adoptions.
 ***
 ## Índice
 1. [Features](#features)
@@ -15,10 +15,11 @@ Servicios rest que permite gestionar perritos y adoptarlos
 
 ## Features
 
-  - Servicios REST
-  - Tareas asincrónas
-  - Autenticación por JWT
-  - Portabilidad, ligereza y autosuficiencia
+  - REST services
+  - Asynchronous tasks
+  - Task monitoring
+  - Authentication with JWT
+  - Portability, lightness and self-sufficiency
 
 ***
 ## Stack
@@ -98,8 +99,7 @@ put here architecture image
 ```
 ***
 ## IDE
-  - El proyecto se desarrolla con [PyCharm](https://www.jetbrains.com/es-es/pycharm/) con [licencia de estudiante](https://www.jetbrains.com/es-es/community/education/#students)
-  - Entornos virtuales del interprete python3.8 [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/)
+  - The project was developed with [PyCharm](https://www.jetbrains.com/es-es/pycharm/) con [licencia de estudiante](https://www.jetbrains.com/es-es/community/education/#students)
   
 ***
 ## Requirements
