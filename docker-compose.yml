@@ -13,11 +13,12 @@ services:
     ports:
       - 8000:8000
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
       - db
       - redis
+      - rabbitmq
   worker:
     build:
       context: .
@@ -26,22 +27,29 @@ services:
     volumes:
       - ./app:/usr/src/app
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
       - server
       - redis
+      - rabbitmq
   redis:
     image: redis:6-alpine
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
   dashboard:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    command: celery -A app.worker.worker.celery --broker=redis://redis:6379/0 flower --port=5555
+    command: celery -A app.worker.worker.celery --broker=amqp://guest:guest@rabbitmq:5672/ flower --port=5555
     ports:
       - 5556:5555
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbitmq:5672/
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
     depends_on:
       - server
@@ -55,6 +63,5 @@ services:
       - ./app/.env
     ports:
       - 5000:5432
-
 volumes:
     postgres_data:

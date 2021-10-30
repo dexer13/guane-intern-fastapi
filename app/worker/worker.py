@@ -11,7 +11,8 @@ from app.config.parameters import DB_USER, DB_PASS, DB_HOST, DB_PORT, \
 from app.core.models import Dog
 
 celery = Celery(__name__)
-celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379")
+# celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379")
+celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "amqp://localhost")
 celery.conf.result_backend = os.environ.get("CELERY_RESULT_BACKEND", "redis://localhost:6379")
 
 
